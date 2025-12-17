@@ -89,97 +89,70 @@
   },
   "club": {
     "hero": {
-      "title": "Compartimos tu afición por los juegos de mesa en Granada",
+      "title": "COMPARTIMOS TU AFICIÓN POR LOS JUEGOS DE MESA EN GRANADA",
       "subtitle": "Somos una asociación cultural sin ánimo de lucro que promueve el ocio saludable a través de los juegos de mesa... y mucho más. Nos une el buen ambiente, enseñar a quien empieza y hacer muchos amigos.",
       "imageAlt": "Club vacío con estanterías"
     },
     "features": {
-      "title": "El club",
-      "subtitle": "Nuestro propio espacio para jugar a todo tipo de juegos de mesa, en el barrio de la Chana de Granada.",
+      "text1": "Somos una asociación cultural sin ánimo de lucro que promueve el ocio saludable a través de los juegos de mesa… y mucho más.",
+      "text2": "Nos une el buen ambiente, enseñar a quien empieza y hacer muchos amigos.",
+      "title": "Nuestros valores"
+    },
+    "rules": {
+      "voluntariado": {
+        "title": "Voluntariado.",
+        "subtitle": "El club lo construimos entre todos y todas:",
+        "items": [
+          "Repartimos las tareas.",
+          "Aportamos tiempo y habilidades.",
+          "Mantenemos el club limpio y ordenado.",
+          "Cuidamos los juegos con cariño.",
+          "Hacemos crecer el club por afición, compromiso y ganas de compartir."
+        ]
+      },
+      "convivencia": {
+        "title": "Convivencia.",
+        "subtitle": "Respeto ante todo.",
+        "items": [
+          "Cuidamos que todo el mundo este cómodo.",
+          "Venimos a jugar y a pasarlo bien.",
+          "Damos la bienvenida a todo el mundo.",
+          "Nos encanta hacer nuevas amistades.",
+          "Respetamos el tiempo de los demás, somos puntuales y comprometidos."
+        ]
+      }
+    },
+    "local": {
+      "title": "Nuestro local",
+      "subtitle": "Nuestro propio espacio en el barrio de la Chana de Granada.",
       "items": [
-        {
-          "title": "Sin horario fijo",
-          "description": "Lo abrimos para jugar cuando queramos"
-        },
-        {
-          "title": "Amplio y bien iluminado",
-          "description": "140 m² con techo alto"
-        },
-        {
-          "title": "Bien comunicado",
-          "description": "En autobús y con fácil aparcamiento"
-        },
-        {
-          "title": "Comodidades",
-          "description": "Frigorífico con refrescos, kiosco con snacks"
-        },
-        {
-          "title": "Climatizado",
-          "description": "Aire acondicionado, ventilador y radiador"
-        },
-        {
-          "title": "Ambiente tranquilo",
-          "description": "Familiar y acogedor"
-        }
+        "Sin horario fijo.",
+        "Amplio y bien iluminado.",
+        "Bien comunicado en autobús.",
+        "Con aparcamiento en la zona.",
+        "Refrescos, cafetera, snack y dulces.",
+        "Climatizado."
       ]
     },
     "location": {
-      "title": "Nuestra ubicación"
-    },
-    "values": {
-      "title": "Valores",
-      "items": [
-        {
-          "title": "Voluntariado",
-          "description": "El club lo construimos entre todos: nadie cobra por organizar o mantener el local. Repartimos las tareas, aportamos tiempo y habilidades, y hacemos crecer el club por afición, compromiso y ganas de compartir."
-        },
-        {
-          "title": "Cuidamos el club",
-          "description": "El local y la ludoteca son de todos: mantenemos el espacio limpio, tratamos el material con cariño y dejamos cada mesa como la encontramos."
-        },
-        {
-          "title": "Respeto ante todo",
-          "description": "Venimos a jugar, pasarlo bien y hacer amigos."
-        },
-        {
-          "title": "Puertas abiertas",
-          "description": "Damos la bienvenida a todo el mundo, de cualquier edad, origen y cultura."
-        },
-        {
-          "title": "Convivencia",
-          "description": "Pedimos el mismo respeto para todos los socios e invitados. Aquí cuidamos el ambiente para que todo el mundo se sienta cómodo."
-        },
-        {
-          "title": "Puntualidad y compromiso",
-          "description": "Respetamos el tiempo de los demás: si no puedes venir o vas a llegar tarde, avisa en el chat y libera tu plaza."
-        }
-      ]
+      "title": "Ven a conocernos",
+      "postalTitle": "Dirección postal",
+      "button": "Cómo llegar"
     },
     "library": {
       "title": "Ludoteca",
       "subtitle": "Más de 800 juegos clásicos y modernos, y creciendo gracias a aportaciones de socios y editoriales.",
-      "description": "En el club tenemos de todo y jugamos a todo tipo de juegos:",
-      "gameTypes": [
-        "Familiares",
-        "Fillers y partys",
-        "Eurogames",
-        "Temáticos",
-        "Cooperativos",
-        "Wargames",
-        "Rol",
-        "Y más..."
-      ],
-      "exploreTitle": "Explora nuestra ludoteca",
-      "exploreNote": "La tabla de ludoteca se actualizará pronto",
+      "description": "En el club tenemos de todo y jugamos a todo tipo de juegos.",
+      "tableNote": "En esta tabla puedes explorar nuestra ludoteca:",
       "moreGames": {
-        "title": "Y muchos más",
-        "description": "Además los socios tenemos muchos más juegos en casa, pregunta por tus juegos de mesa favoritos:"
+        "title": "Y muchos más.",
+        "description": "Además los socios tenemos muchos más juegos en casa. Pregunta por tus juegos de mesa favoritos:"
       }
     },
     "cta": {
-      "title": "¿Ya nos conoces y has gastado tus 3 invitaciones gratis?",
+      "title": "¿Ya has gastado tus 3 invitaciones gratis?",
       "subtitle": "Descubre cómo hacerte socio del club",
-      "button": "Ser Socio"
+      "button": "Hazte Socio"
     }
   },
   "member": {

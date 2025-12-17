@@ -157,28 +157,30 @@
   },
   "member": {
     "hero": {
-      "title": "¡Tu nueva familia jugona!",
+      "title": "¡TU NUEVA FAMILIA JUGONA!",
       "subtitle": "Únete a una comunidad activa que juega cada semana en nuestro Club de juegos de mesa de Granada. Más de 800 juegos, buen ambiente y ganas de compartir afición."
     },
     "howToJoin": {
-      "title": "Cómo unirte",
+      "text1": "Únete a una comunidad activa que juega cada semana en nuestro Club de juegos de mesa de Granada.",
+      "text2": "Más de 800 juegos, buen ambiente y ganas de compartir afición.",
+      "title": "¿Cómo unirte al club?",
       "steps": [
         {
           "title": "Prueba el club",
-          "description": "Usa tus 3 invitaciones gratuitas para conocernos"
+          "description": "Gasta tus 3 invitaciones gratuitas para conocernos."
         },
         {
           "title": "Sigue viniendo",
-          "description": "Con pase de día por 4€ o hazte socio"
+          "description": "Con pase de día por 4€ o hazte socio."
         },
         {
           "title": "Hazte socio",
           "items": [
-            "Matrícula 15€ (reembolsable si causas baja)",
-            "Cuota 15€/mes",
-            "Plan familiar: +5€ cónyuge y +5€ por cada hijo"
+            "Matrícula 15€ (reembolsable si causas baja).",
+            "Cuota 15 €/mes.",
+            "Plan familiar: +5€ cónyuge y +5€ por cada hijo mayor de 18 años."
           ],
-          "description": "Al hacerte socio recibirás el reglamento y acceso al Telegram privado para montar y unirte a partidas."
+          "description": ""
         }
       ]
     },
@@ -213,7 +215,7 @@
     },
     "cta": {
       "title": "¿Tienes más dudas?",
-      "subtitle": "Pregunta en el grupo de WhatsApp por el secretario, él te contactará por privado cuando pueda y resolverá todas tus dudas."
+      "subtitle": "Pregunta en el grupo de whatsapp por el secretario, él te contactará por privado cuando pueda y resolverá todas tus dudas."
     }
   },
   "contact": {

@@ -14,12 +14,12 @@ Sigue estos pasos para desplegar la web en tu máquina local:
 
 2.  **Instala las dependencias:**
     ```bash
-    npm install
+    pnpm install
     ```
 
 3.  **Inicia el servidor de desarrollo:**
     ```bash
-    npm run dev
+    pnpm run dev
     ```
 
 La web debería estar disponible en `http://localhost:3000`.

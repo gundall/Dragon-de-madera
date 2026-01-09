@@ -1,0 +1,53 @@
+name: AI PR Reviewer
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR Diff
+        id: diff
+        run: |
+          git diff origin/${{ github.base_ref }}...origin/${{ github.head_ref }} > diff.txt
+
+      - name: AI Review
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          # Instalamos una herramienta simple para peticiones HTTP o usamos curl
+          DIFF_CONTENT=$(cat diff.txt | jq -sR .)
+          
+          RESPONSE=$(curl -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"contents\": [{
+                \"parts\":[{
+                  \"text\": \"Eres un revisor de código experto. Revisa el siguiente diff de un Pull Request y sugiere mejoras de seguridad, rendimiento y legibilidad en español. Si el código es correcto, felicita al autor. Aquí está el diff: $DIFF_CONTENT\"
+                }]
+              }]
+            }")
+
+          # Extraemos el texto de la respuesta
+          REVIEW_TEXT=$(echo $RESPONSE | jq -r '.candidates[0].content.parts[0].text')
+          echo "REVIEW_BODY<<EOF" >> $GITHUB_ENV
+          echo "$REVIEW_TEXT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Post Comment
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            ## 🤖 Revisión de IA (Gemini)
+            ${{ env.REVIEW_BODY }}

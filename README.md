@@ -86,6 +86,7 @@ La web estará disponible en `http://localhost:5173`
 
 ## Estructura del Proyecto
 
+
 ```
 Dragon-de-madera/
 ├── public/                    # Archivos estáticos (imágenes, favicon)
@@ -479,3 +480,4 @@ import { Button } from '@/components/ui/button'
 ## Licencia
 
 Proyecto privado de la Asociación Dragón de Madera.
+

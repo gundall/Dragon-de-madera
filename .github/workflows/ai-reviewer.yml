@@ -20,34 +20,37 @@ jobs:
       - name: Get PR Diff
         id: diff
         run: |
-          # Obtenemos el diff y lo limitamos a las primeras 500 líneas para no saturar la API
           git diff origin/${{ github.base_ref }}...origin/${{ github.head_ref }} | head -n 500 > diff.txt
           if [ ! -s diff.txt ]; then echo "EMPTY_DIFF=true" >> $GITHUB_ENV; fi
 
-      - name: AI Review
+      - name: AI Review & Diagnostic
         if: env.EMPTY_DIFF != 'true'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          # Creamos el JSON para la versión v1
+          # 1. DIAGNÓSTICO: Listar modelos disponibles para esta API Key
+          echo "--- Listando modelos disponibles ---"
+          curl -s "https://generativelanguage.googleapis.com/v1beta/models?key=$GEMINI_API_KEY" > models.json
+          # Esto imprimirá en los logs de GitHub Actions qué modelos puedes usar
+          jq -r '.models[].name' models.json || echo "No se pudo listar modelos"
+
+          # 2. Intentar la petición usando un modelo que suele ser "universal"
+          # Probaremos con gemini-1.5-flash-latest que es el alias más reciente
+          MODEL_NAME="gemini-1.5-flash-latest"
+          
           jq -n --arg msg "$(cat diff.txt)" \
-          '{
-            contents: [{parts: [{text: ("Eres un Senior Developer. Revisa este código y sugiere mejoras, bugs o problemas de seguridad en español:\n\n" + $msg)}]}],
-            safetySettings: [
-              {category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE"},
-              {category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE"},
-              {category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE"},
-              {category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE"}
-            ]
-          }' > payload.json
+          "{contents: [{parts: [{text: (\"Eres un Senior Developer. Revisa este código y sugiere mejoras en español:\\n\\n\" + \$msg)}]}],
+            safetySettings: [{category: \"HARM_CATEGORY_HARASSMENT\", threshold: \"BLOCK_NONE\"}]}" \
+          > payload.json
 
-          # USAMOS LA VERSIÓN v1 EN LA URL
-          curl -X POST "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=$GEMINI_API_KEY" \
+          RESPONSE=$(curl -s -X POST "https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=$GEMINI_API_KEY" \
             -H "Content-Type: application/json" \
-            -d @payload.json > response.json
+            -d @payload.json)
 
-          # Extraer texto o el mensaje de error de la API
-          REVIEW_TEXT=$(jq -r 'if .candidates[0].content.parts[0].text then .candidates[0].content.parts[0].text else "⚠️ **Error de Gemini:** " + (.error.message // "Respuesta vacía de la API") end' response.json)
+          echo "$RESPONSE" > response.json
+          
+          # 3. Extraer texto con lógica de respaldo
+          REVIEW_TEXT=$(jq -r 'if .candidates[0].content.parts[0].text then .candidates[0].content.parts[0].text else "⚠️ **Error de API:** " + (.error.message // "La IA no devolvió texto. Revisa los logs de Actions.") end' response.json)
           
           echo "REVIEW_BODY<<EOF" >> $GITHUB_ENV
           echo "$REVIEW_TEXT" >> $GITHUB_ENV
@@ -58,5 +61,5 @@ jobs:
         uses: mshick/add-pr-comment@v2
         with:
           message: |
-            ## 🤖 Revisión de IA (Gemini 1.5)
+            ## 🤖 Revisión de IA (Modo Flash-Latest)
             ${{ env.REVIEW_BODY }}

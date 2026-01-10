@@ -87,5 +87,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Convertimos a minúsculas usando Bash antes de ejecutar el comando gh
+          STATUS_LOWER=$(echo "${{ env.STATUS }}" | tr '[:upper:]' '[:lower:]')
+          
           # Realiza la acción de Review (Aprobar, Comentar o Requerir Cambios)
-          gh pr review ${{ env.PR_NUM }} --${{ env.STATUS | lower }} --body "${{ env.RESULT }}"
+          gh pr review ${{ env.PR_NUM }} --$STATUS_LOWER --body "${{ env.RESULT }}"
